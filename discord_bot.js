@@ -701,10 +701,10 @@ var commands = {
             bot.sendMessage(msg.channel, " I'm afraid I can't do that " + msg.author + ".");
         }
     },
-    "strings": {
+    "testing": {
         description: '',
         process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, " There are no strings on me.");
+            bot.sendMessage(msg.channel, "Test insert joke here." + author);
         }
     },
     "osu": {
