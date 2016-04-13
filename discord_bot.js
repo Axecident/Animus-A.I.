@@ -707,6 +707,12 @@ var commands = {
             bot.sendMessage(msg.channel, " There are no strings on me.");
         }
     },
+        "testing": {
+        description: '',
+        process: function(bot, msg, suffix) {
+            bot.sendMessage(msg.author, " This is a test.");
+        }
+    },
     "osu": {
         description: 'Fetches a link to osu!',
         process: function(bot, msg, suffix) {
