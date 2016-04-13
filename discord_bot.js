@@ -1,4 +1,4 @@
-try {
+{
 	var Discord = require("discord.js");
 } catch (e){
 	console.log(e.stack);
