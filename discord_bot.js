@@ -890,8 +890,8 @@ var commands = {
             bot.sendMessage(msg.author, "TCTD Stands for Tom Clancy's The Division, It is a game. Here is the game's website http://tomclancy-thedivision.ubi.com/game/en-au/home/");
         }
     },
-	"playlist_axecident": {
-        description: "plays kirito's playlist",
+	"playlist_animcore": {
+        description: "plays animcore's playlist",
         process: function(bot, msg, suffix) {
 			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=NNpuKshL_SM");
 			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=v8O2NKi-ZSo");
@@ -905,7 +905,7 @@ var commands = {
 			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=o_1aF54DO60");
 			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=wXcdYBh3hgg");
 			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=RisT-JpX_cs");
-			console.log("playlist_axecident has been started by " + msg.author)
+			console.log("playlist_animcore has been started by " + msg.author)
 	    }
     },
 	"playlist_nightmix": {
