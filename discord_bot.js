@@ -927,6 +927,15 @@ var commands = {
 			console.log("playlist_drops has been started by " + msg.author)
 	    }
     },
+    	"playlist_test": {
+        description: "plays the test playlist containing songs for the sake of testing",
+        process: function(bot, msg, suffix) {
+			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=BrCKvKXvN2c");
+			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=rEL-HdWvLpM");
+			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=SDiJiGuUeBo");
+			console.log("playlist_test has been started by " + msg.author)
+	    }
+    },
 	"playlist_jettsu": {
         description: "plays the playlist containing songs that are chill",
         process: function(bot, msg, suffix) {
