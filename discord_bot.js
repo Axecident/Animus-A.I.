@@ -96,58 +96,6 @@ var meme = {
 var aliases;
 var messagebox;
 
-var playlists = {
-	"playlist_axecident": {
-        description: "plays kirito's playlist",
-        process: function(bot, msg, suffix) {
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=NNpuKshL_SM");
-			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=v8O2NKi-ZSo");
-			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=WkLO8llyN64");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=kguRNaAO8oc");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=RgKAFK5djSk");
-			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=55gfjDAwdQM");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=w_RHpzpUz7g");
-			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=c0mX-5q3mrY");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=kXYiU_JCYtU");
-			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=o_1aF54DO60");
-			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=wXcdYBh3hgg");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=RisT-JpX_cs");
-			console.log("playlist_axecident has been started by " + msg.author)
-	    }
-    },
-	"playlist_nightmix": {
-        description: "plays the playlist containing long mixes of nightstep/nightcore songs",
-        process: function(bot, msg, suffix) {
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=Hg53gjcOwvo");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=pTLdUBfGzvw");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=SRKKJXHIw6A");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=ER_mANF7f2g");
-			console.log("playlist_nightmix has been started by " + msg.author)
-	    }
-    },
-	"playlist_drops": {
-        description: "plays the playlist containing songs with drops in 'em",
-        process: function(bot, msg, suffix) {
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=BrCKvKXvN2c");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=rEL-HdWvLpM");
-			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=SDiJiGuUeBo");
-			console.log("playlist_drops has been started by " + msg.author)
-	    }
-    },
-	"playlist_jettsu": {
-        description: "plays the playlist containing songs that are chill",
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=sEQf5lcnj_o&nohtml5=False");
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=HMGetv40FkI");
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=kpARMwBEpFk&list=PLCBMNXo_yZDAcX5BC-4ash_sg2L-PN7Rf&index=3");
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=3kdv2X283KM");
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=CWIKp2Lsj9w");
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=7XmDYJBZZdc");
-            bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=u-blwjXkZow&nohtml5=False");
-            console.log("playlist_jettsu has been started by " + msg.author)
-        }
-    },
-}
 
 var commands = {
 	"gif": {
@@ -186,25 +134,12 @@ var commands = {
         description: "returns the user id of the sender",
         process: function(bot,msg){bot.sendMessage(msg.channel,msg.author.id);}
     },
-    "idle": {
-        description: "sets bot status to idle",
-        process: function(bot,msg){ bot.setStatusIdle();}
-    },
-    "online": {
-        description: "sets bot status to online",
-        process: function(bot,msg){ bot.setStatusOnline();}
-    },
     "y": {
         usage: "<video tags>",
         description: "gets youtube video matching tags",
         process: function(bot, msg, suffix) {
             youtube_plugin.respond(suffix, msg.channel, bot);
         }
-    },
-    "say": {
-        usage: "<message>",
-        description: "bot says message",
-        process: function(bot,msg,suffix){ bot.sendMessage(msg.channel,suffix);}
     },
 	"announce": {
         usage: "<message>",
@@ -273,7 +208,7 @@ var commands = {
             bot.sendMessage(msg.channel,str);
         }
     },
-    "version": {
+    /*"version": {
         description: "returns the git commit this bot is running",
         process: function(bot,msg,suffix) {
             var commit = require('child_process').spawn('git', ['log','-n','1']);
@@ -286,12 +221,7 @@ var commands = {
                 }
             });
         }
-    },
-    "log": {
-        usage: "<log message>",
-        description: "logs message to bot console",
-        process: function(bot,msg,suffix){console.log(msg.content);}
-    },
+    },*/
     "wiki": {
         usage: "<search terms>",
         description: "returns the summary of the first matching search result from Wikipedia",
@@ -335,64 +265,6 @@ var commands = {
             }));
         }
     },
-    "create": {
-        usage: "<channel name>",
-        description: "creates a new text channel with the given name.",
-        process: function(bot,msg,suffix) {
-            bot.createChannel(msg.channel.server,suffix,"text").then(function(channel) {
-                bot.sendMessage(msg.channel,"created " + channel);
-            }).catch(function(error){
-				bot.sendMessage(msg.channel,"failed to create channel: " + error);
-			});
-        }
-    },
-	"voice": {
-		usage: "<channel name>",
-		description: "creates a new voice channel with the give name.",
-		process: function(bot,msg,suffix) {
-            bot.createChannel(msg.channel.server,suffix,"voice").then(function(channel) {
-                bot.sendMessage(msg.channel,"created " + channel.id);
-				console.log("created " + channel);
-            }).catch(function(error){
-				bot.sendMessage(msg.channel,"failed to create channel: " + error);
-			});
-        }
-	},
-    "delete": {
-        usage: "<channel name>",
-        description: "deletes the specified channel",
-        process: function(bot,msg,suffix) {
-			var channel = bot.channels.get("id",suffix);
-			if(suffix.startsWith('<#')){
-				channel = bot.channels.get("id",suffix.substr(2,suffix.length-3));
-			}
-            if(!channel){
-				var channels = bot.channels.getAll("name",suffix);
-				if(channels.length > 1){https://github.com/chalda/DiscordBot/issues/new
-					var response = "Multiple channels match, please use id:";
-					for(var i=0;i<channels.length;i++){
-						response += channels[i] + ": " + channels[i].id;
-					}
-					bot.sendMessage(msg.channel,response);
-					return;
-				}else if(channels.length == 1){
-					channel = channels[0];
-				} else {
-					bot.sendMessage(msg.channel, "Couldn't find channel " + suffix + " to delete!");
-					return;
-				}
-			}
-            bot.sendMessage(msg.channel.server.defaultChannel, "deleting channel " + suffix + " at " +msg.author + "'s request");
-            if(msg.channel.server.defaultChannel != msg.channel){
-                bot.sendMessage(msg.channel,"deleting " + channel);
-            }
-            bot.deleteChannel(channel).then(function(channel){
-				console.log("deleted " + suffix + " at " + msg.author + "'s request");
-            }).catch(function(error){
-				bot.sendMessage(msg.channel,"couldn't delete channel: " + error);
-			});
-        }
-    },
     "stock": {
         usage: "<stock to fetch>",
         process: function(bot,msg,suffix) {
@@ -411,16 +283,6 @@ var commands = {
             });
         }
     },
-	/*"wolfram": {
-		usage: "<search terms>",
-        description: "gives results from wolframalpha using search terms",
-        process: function(bot,msg,suffix){
-				if(!suffix){
-					bot.sendMessage(msg.channel,"Usage: !wolfram <search terms> (Ex. !wolfram integrate 4x)");
-				}
-	            wolfram_plugin.respond(suffix,msg.channel,bot);
-       	    }
-	},*/
     "rss": {
         description: "lists available rss feeds",
         process: function(bot,msg,suffix) {
@@ -488,7 +350,7 @@ var commands = {
 			}
 		}
 	},
-	"eval": {
+	/*"eval": {
 		usage: "<command>",
 		description: 'Executes arbitrary javascript in the bot process. User must have "eval" permission',
 		process: function(bot,msg,suffix) {
@@ -498,14 +360,7 @@ var commands = {
 				bot.sendMessage(msg.channel, msg.author + " doesn't have permission to execute eval!");
 			}
 		}
-	},
-	"topic": {
-		usage: "[topic]",
-		description: 'Sets the topic for the channel. No topic removes the topic.',
-		process: function(bot,msg,suffix) {
-			bot.setChannelTopic(msg.channel,suffix);
-		}
-	},
+	},*/
 	"roll": {
         usage: "[# of sides] or [# of dice]d[# of sides]( + [# of dice]d[# of sides] + ...)",
         description: "roll one die with x sides, or multiple dice using d20 syntax. Default value is 10",
@@ -529,28 +384,6 @@ var commands = {
             }
         }
     },
-	/*"msg": {
-		usage: "<user> <message to leave user>",
-		description: "leaves a message for a user the next time they come online",
-		process: function(bot,msg,suffix) {
-			var args = suffix.split(' ');
-			var user = args.shift();
-			var message = args.join(' ');
-			if(user.startsWith('<@')){
-				user = user.substr(2,user.length-3);
-			}
-			var target = msg.channel.server.members.get("id",user);
-			if(!target){
-				target = msg.channel.server.members.get("username",user);
-			}
-			messagebox[target.id] = {
-				channel: msg.channel.id,
-				content: target + ", " + msg.author + " said: " + message
-			};
-			updateMessagebox();
-			bot.sendMessage(msg.channel,"message saved.")
-		}
-	},*/
 	"twitch": {
 		usage: "<stream>",
 		description: "checks if the given stream is online",
@@ -645,157 +478,10 @@ var commands = {
 		bot.sendMessage(msg.channel,"Uptime: " + timestr);
 	}
     },
-	"night": {
-        description: 'Gives you a goodnight message :).',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Good night s-senpai " + msg.author + " >///<");
-        }
-    },
-    "gnight": {
-        description: 'Gives you a different goodnight message :).',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Good night, have lots of sweet dreams " + msg.author + "! >///<")
-
-        }
-    },
-	"awake": {
-        description: 'Gives you a wake up welcome message.',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, msg.author + " Hey sleepyhead it's good to see you're finally awake!")
-
-        }
-    },
-    "bye": {
-        description: 'Gives you a farewell message :).',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "See you later " + msg.author + "! " + "（＾○＾）／");
-        }
-    },
-    "afk": {
-        description: 'Lets the channel know you are afk!',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "senpai " + msg.author + " is now afk! >.>");
-        }
-    },
-    "back": {
-        description: 'Lets the channel know you are back!',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Senpai " + msg.author + " is back," + " welcome back " + msg.author + "!");
-        }
-    },
-    "hello": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Hello! >///< " + msg.author);
-        }
-    },
-    "hi": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Hi! >///< " + msg.author);
-        }
-    },
-    "sexmeplz": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, " I'm afraid I can't do that " + msg.author + ".");
-        }
-    },
-    "strings": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, " There are no strings on me.");
-        }
-    },
-    "osu": {
-        description: 'Fetches a link to osu!',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "https://osu.ppy.sh/");
-			bot.delete.message(msg.channel, message);
-        }
-    },
-	"youtube": {
-        description: 'Fetches a link to youtube!',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "https://www.youtube.com/");
-        }
-    },
-    "intro": {
-        description: 'Aika introduces herself!',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Hello, my name is Aika, I am here to help you with anything you need!（＾○＾）／");
-        }
-    },
-	"welcome": {
-        description: 'Welcomes a new comer',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Hey there new person! Welcome to our humble abode!（＾○＾）／");
-        }
-    },
 	"lf": {
         description: '',
         process: function(bot, msg, suffix) {
             bot.sendMessage(msg.channel, "( ͡° ͜ʖ ͡°)");
-        }
-    },
-	"kirito": {
-        description: 'Description of Kirito.',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Kirito is the person who helps me grow! he is very nice to me, and is adding code to me whenever he thinks it necessary! Kirito's real name is Alex and he lives in Australia >///< feel free to ask him any questions, I'm sure he won't mind!");
-        }
-    },
-	"asuna": {
-        description: 'Description of Asuna.',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Lovable, Huggable and Beautiful. Also very off limits. :)");
-        }
-    },
-	"ffff": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "http://www.ragefacecomics.com/faces/large/rage-classic-l.png");
-        }
-    },
-	"chinchin": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "http://static2.fjcdn.com/thumbnails/comments/Ey+b0ss+it+looks+like+you+habe+some+cancer+b0ss+_122495022efb6e0e4c5952d4e0bbd5da.jpg");
-        }
-    },
-	"ricefields": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "http://38.media.tumblr.com/7f1e9981470cc84ca23bbf370684a356/tumblr_no9oq9EntS1tis60co1_500.gif");
-        }
-    },
-	"grats": {
-        description: 'congratulates someone?',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Congratulations, you've done well! want a cookie? ^-^");
-        }
-    },
-	"ty": {
-        description: 'Says a response to "thank you"',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "You're very welcome " + msg.author + "!");
-        }
-    },
-	"floofy": {
-        description: 'Description of Floofy.',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Floofy is that gmod nerd! hes a pretty chill guy, and loves to make new friends! FLooFY can be referred to as FLooF and lives in Australia ( ͡° ͜ʖ ͡°) feel free to ask him anything, he would be more then happy to help.");
-        }
-    },
-	"ily": {
-        description: '...',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, msg.author + " I'm afraid I wasn't programmed to love...");
-        }
-    },
-	"fgt": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, msg.author + " User fgt not found! please try looking in the mirror, you should find what you're looking for there!");
         }
     },
 	"animus": {
@@ -805,49 +491,10 @@ var commands = {
 			bot.sendMessage(msg.author, "Here is the Animus website: http://animus.site88.net/");
         }
     },
-	"hug": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "(づ｡◕‿‿◕｡)づ");
-        }
-    },
-	"100101001": {
-        description: '',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.author, "http://hackertyper.net/");
-        }
-    },
 	"memeids": {
         description: 'Gives you a link to the list of meme IDs',
         process: function(bot, msg, suffix) {
             bot.sendMessage(msg.channel, "https://api.imgflip.com/popular_meme_ids");
-        }
-    },
-	"tm": {
-        description: 'Does Stuff™',
-        process: function(bot, msg, suffix) {
-			var args = suffix.split('');
-			var user = args.shift();
-			var message = args.join('');
-            bot.sendMessage(msg.channel, message + "™");
-        }
-    },
-	"spoiler": {
-        description: 'Creates a spoiler warning',
-        process: function(bot, msg, suffix) {
-			var args = suffix.split('');
-			var user = args.shift();
-			var message = args.join('');
-            bot.sendMessage(msg.channel, "The following message(s) is a potential spoiler of " + message + " Please do not read it if you have not finished watching/are not up-to-date with " + message);
-        }
-    },
-	"boxify": {
-        description: 'Boxifies a message.',
-        process: function(bot, msg, suffix) {
-			var args = suffix.split('');
-			var user = args.shift();
-			var message = args.join('');
-            bot.sendMessage(msg.channel, "```" + message + "```");
         }
     },
 	"speedtest": {
@@ -872,26 +519,21 @@ var commands = {
 			bot.sendMessage(msg.author, "Proxy 3 https://hide.me/en/proxy");
 	    }
     },
-	"exeraph": {
-        description: 'Description of Exeraph.',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Exeraph is a friend of Kirito's, his real name is Tynan. He lives in Australia, he's usually quite punny, and I'm sure he would be happy to help out if you need something! >.>");
-        }
-    },
-	"jettsu": {
-        description: 'Description of Jettsu.',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.channel, "Jettsu is that guy, yep that's all there is to it >.> feel free to ask him anything, he would be more then happy to" + '"help" >///<.');
-        }
-    },
 	"tctd": {
 		description: 'Tells you what TCTD stands for',
         process: function(bot, msg, suffix) {
             bot.sendMessage(msg.author, "TCTD Stands for Tom Clancy's The Division, It is a game. Here is the game's website http://tomclancy-thedivision.ubi.com/game/en-au/home/");
         }
     },
-	"playlist_animcore": {
-        description: "plays animcore's playlist",
+	"profilepic": {
+		description: "Gives you Aika's profile picture",
+        process: function(bot, msg, suffix) {
+            bot.sendMessage(msg.author, "My profile pic is here: http://puu.sh/ogyB6/fb3e2430f6.png");
+			bot.sendMessage(msg.author, "My full un-cropped profile pic is here: http://www.wallpaperup.com/uploads/wallpapers/2015/08/14/777349/c6421eada1044fefa35e6fdf925effaf.jpg");
+        }
+    },
+	"playlist_axecident": {
+        description: "plays kirito's playlist",
         process: function(bot, msg, suffix) {
 			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=NNpuKshL_SM");
 			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=v8O2NKi-ZSo");
@@ -905,7 +547,7 @@ var commands = {
 			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=o_1aF54DO60");
 			bot.sendMessage(msg.channel, "~n http://www.youtube.com/watch?v=wXcdYBh3hgg");
 			bot.sendMessage(msg.channel, "~n https://www.youtube.com/watch?v=RisT-JpX_cs");
-			console.log("playlist_animcore has been started by " + msg.author)
+			console.log("playlist_axecident has been started by " + msg.author)
 	    }
     },
 	"playlist_nightmix": {
@@ -960,29 +602,6 @@ var commands = {
 			bot.sendMessage(msg.author, "To use playlists for Aika Music, Aika must be online. (me), If I am online then you can type the command to use a playlist, for example '!playlist_drops' without the ' '. What the playlist command does is it queues up a bunch of songs in a pre-made playlist. If you would like to make your own playlist please contact one of the admins.");
 	    }
     },
-	"requestmeme": {
-        usage: "<command> <name of meme> <meme id>",
-        description: 'Adds a meme to the list of memes',
-		process: function(bot, msg, suffix) {
-			var args = suffix.split(' ');
-            var message = args.join(' ');
-
-			bot.users.get('id', '105640584470937600')
-			
-			bot.sendMessage(bot.users.get('id', '105640584470937600'), msg.author + " requested this meme: " + message)
-		}
-		
-    },
-	"requestmemehelp": {
-        description: 'Tells you how to use !requestmeme',
-        process: function(bot, msg, suffix) {
-            bot.sendMessage(msg.author, "An example of how you use !requestmeme would be !requestmeme @Kirito example 5316361 ");
-			sleep(1000);
-			bot.sendMessage(msg.author, "Please keep in mind that if the meme you requested doesn't get added within 2 days a meme with the same id probably already exists!");
-			sleep(1000);
-			bot.sendMessage(msg.author, "To get meme IDs please type !memeids");
-        }
-    },
 	"requestcommand": {
         usage: "<command> <name of command> <explanation/description of what the command will do>",
         description: 'Requests a command',
@@ -1010,25 +629,6 @@ var commands = {
 			bot.sendMessage(msg.author, "!requestcommand !kappa face sends a kappa face in chat");
 			sleep(2000);
 			bot.sendMessage(msg.author, "You can however do this !requestcommand !kappa-face sends a kappa face in chat");
-		}
-		
-    },
-	"pm": {
-        usage: "<command> <@personsname> <message>",
-        description: 'Private Messages someone.',
-		process: function(bot, msg, suffix) {
-			var args = suffix.split(' ');
-            var user = args.shift();
-            var message = args.join(' ');
-            if (user.startsWith('<@')) {
-                user = user.substr(2, user.length - 3);
-            }
-			
-            var target = msg.channel.server.members.get("id", user);
-            if (!target) {
-                target = msg.channel.server.members.get("username", user);
-            }
-				bot.sendMessage(target, msg.author + " Said:  " + message)
 		}
 		
     },
@@ -1104,13 +704,13 @@ var commands = {
             if (!target) {
                 target = msg.channel.server.members.get("username", user);
             }
-				bot.sendMessage(target, msg.author + " Says good morning! :)")
+				bot.sendMessage(target, " good morning " + target + " this message was sent by " + msg.author)
 		}
 		
     },
-	"wakeup": {
+	"gn": {
         usage: "<command> <@personsname>",
-        description: 'Sends wakeup message.',
+        description: 'Sends good morning message.',
 		process: function(bot, msg, suffix) {
 			var args = suffix.split(' ');
             var user = args.shift();
@@ -1123,11 +723,7 @@ var commands = {
             if (!target) {
                 target = msg.channel.server.members.get("username", user);
             }
-				bot.sendMessage(target, msg.author + " Wants you to wakeup")
-				bot.sendMessage(target, msg.author + " Wants you to wakeup")
-				bot.sendMessage(target, msg.author + " Wants you to wakeup")
-				bot.sendMessage(target, msg.author + " Wants you to wakeup")
-				bot.sendMessage(target, msg.author + " Wants you to wakeup")
+				bot.sendMessage(target, msg.author + " Says good morning! :)")
 		}
 		
     },
