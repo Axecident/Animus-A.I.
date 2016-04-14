@@ -509,6 +509,11 @@ var commands = {
             bot.sendMessage(msg.author, "Your ip address is here: http://www.ipchicken.com/");
         }
     },
+    "aa3c": {
+        process: function(bot, msg, suffix) {
+            bot.sendMessage(msg.author, "https://github.com/Axecident/aika");
+        }
+    },
 	"proxy": {
         description: 'Gives you 3 links to proxy websites',
         process: function(bot, msg, suffix) {
